@@ -1,0 +1,330 @@
+<div class="staff-layout">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <img
+        src="/atlas-logo.png"
+        alt="ATLAS Official Logo"
+        class="brand-logo-img"
+      />
+      <h2 class="brand-title">USTP VILLANUEVA</h2>
+      <span class="brand-subtitle">Event In-Charge</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a
+        routerLink="/staff/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </span>
+        <span>Dashboard</span>
+      </a>
+
+      <a
+        routerLink="/staff/verification"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <span>Attendance Verification</span>
+        @if (pending > 0) {
+          <span class="nav-badge">{{ pending }}</span>
+        }
+      </a>
+
+      <a
+        routerLink="/staff/pending"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </span>
+        <span>Pending Submissions</span>
+      </a>
+
+      <a
+        routerLink="/staff/verified"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 11 3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </span>
+        <span>Verified Records</span>
+      </a>
+
+      <a
+        routerLink="/staff/events"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+        </span>
+        <span>Manage Events</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-tagline">
+        LEARN &bull; CODE &bull; INNOVATE
+      </div>
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()"
+      >
+        <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" x2="9" y1="12" y2="12"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="top-header-left">
+        <button type="button" class="menu-toggle-btn" aria-label="Toggle menu">
+          &#9776;
+        </button>
+        <div class="header-page-title">
+          <span class="dashboard-label">STAFF PORTAL</span>
+          <h1>Staff Dashboard</h1>
+        </div>
+      </div>
+
+      <div class="top-header-right">
+        <!-- Notification Bell -->
+        <div class="notification-bell" title="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="notification-badge">{{ pending > 0 ? pending : 2 }}</span>
+        </div>
+
+        <!-- Staff Mini Profile -->
+        <div class="user-mini-profile">
+          <div class="mini-avatar">S</div>
+          <div class="mini-info">
+            <strong>{{ staffName }}</strong>
+            <span>Event In-Charge</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-body">
+
+      <!-- ================= HERO / WELCOME BANNER ================= -->
+      <section class="welcome-banner">
+        <div class="banner-left">
+          <img
+            src="/atlas-logo.png"
+            alt="ATLAS Owl Logo"
+            class="banner-logo"
+          />
+
+          <div class="banner-typography">
+            <h2>USTP VILLANUEVA</h2>
+            <div class="gold-title">ATTENDANCE VERIFICATION DESK</div>
+            <div class="sub-title">MANUAL PHOTO COMPARISON & VALIDATION</div>
+          </div>
+        </div>
+
+        <div class="banner-right">
+          <a routerLink="/staff/verification" class="btn-primary" style="font-size: 14px; height: 46px;">
+            <span>Open Verification Desk &rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= 4 STATISTICS CARDS ================= -->
+      <section class="statistics">
+        <div class="stat-card">
+          <div class="stat-icon-wrapper attendance">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 11 3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">{{ total }}</span>
+            <span class="stat-label">Total Submissions</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper pending">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number pending-number">{{ pending }}</span>
+            <span class="stat-label">Pending Submissions</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper accepted">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number accepted-number">{{ accepted }}</span>
+            <span class="stat-label">Accepted Records</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper rejected">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" x2="9" y1="9" y2="15"/>
+              <line x1="9" x2="15" y1="9" y2="15"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number">{{ rejected }}</span>
+            <span class="stat-label">Rejected Records</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= WORKFLOW QUICK ACCESS ================= -->
+      <section style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 26px;">
+        <a routerLink="/staff/verification" class="content-card" style="text-decoration: none; transition: transform 0.2s ease;">
+          <div style="font-size: 26px; color: var(--navy-dark); margin-bottom: 10px;">&#128065;</div>
+          <h3 style="margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--navy-dark);">
+            Attendance Verification
+          </h3>
+          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+            Side-by-side photo comparison review tool. Accept or reject submissions with remarks.
+          </p>
+        </a>
+
+        <a routerLink="/staff/pending" class="content-card" style="text-decoration: none; transition: transform 0.2s ease;">
+          <div style="font-size: 26px; color: var(--gold-dark); margin-bottom: 10px;">&#9745;</div>
+          <h3 style="margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--navy-dark);">
+            Pending Submissions (Bulk Accept)
+          </h3>
+          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+            Select multiple pending records with checkboxes and perform batch manual approval.
+          </p>
+        </a>
+
+        <a routerLink="/staff/events" class="content-card" style="text-decoration: none; transition: transform 0.2s ease;">
+          <div style="font-size: 26px; color: var(--navy-dark); margin-bottom: 10px;">&#128197;</div>
+          <h3 style="margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--navy-dark);">
+            Manage School Events
+          </h3>
+          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+            Schedule school events, specify venue, and open or close attendance capturing.
+          </p>
+        </a>
+      </section>
+
+      <!-- ================= PENDING QUEUE TABLE ================= -->
+      <section class="content-card">
+        <div class="card-title-bar">
+          <div>
+            <h2 class="card-header-title">Pending Review Queue ({{ pendingQueue.length }})</h2>
+          </div>
+
+          <a routerLink="/staff/verification" class="btn-primary btn-sm">
+            <span>Start Verifying &rarr;</span>
+          </a>
+        </div>
+
+        @if (pendingQueue.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">&#10004;</div>
+            <h3>No Pending Submissions</h3>
+            <p>Great job! There are no student attendance submissions waiting for verification right now.</p>
+          </div>
+        } @else {
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Department</th>
+                  <th>Event Activity</th>
+                  <th>Date / Time</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (record of pendingQueue; track record.id) {
+                  <tr>
+                    <td>
+                      <div class="student-table-cell">
+                        @if (record.profilePhoto) {
+                          <img [src]="record.profilePhoto" alt="Profile" class="table-photo" />
+                        } @else {
+                          <div class="table-avatar">{{ record.studentName.charAt(0) }}</div>
+                        }
+                        <div class="student-meta">
+                          <strong>{{ record.studentName }}</strong>
+                          <span>{{ record.studentId }} &bull; {{ record.section }}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{{ record.department || 'BSIT Student' }}</td>
+                    <td><strong style="color: var(--navy-dark);">{{ record.eventTitle }}</strong></td>
+                    <td>{{ record.date }} at {{ record.time }}</td>
+                    <td>
+                      <a routerLink="/staff/verification" class="btn-primary btn-sm">
+                        <span>Review & Verify &rarr;</span>
+                      </a>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </section>
+
+    </div>
+
+  </main>
+
+</div>

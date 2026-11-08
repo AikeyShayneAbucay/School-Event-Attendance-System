@@ -1,0 +1,235 @@
+<div class="signup-page">
+
+  <!-- ================================
+       LEFT BRAND PANEL (ATLAS Navy & Gold)
+  ================================= -->
+  <aside class="brand-panel">
+    <div class="brand-content">
+
+      <!-- BRAND LOGO -->
+      <div class="login-brand-header">
+        <img
+          src="/atlas-logo.png"
+          alt="ATLAS Official Logo"
+          class="login-brand-logo-img"
+        />
+        <div class="login-brand-text">
+          <h2>USTP VILLANUEVA</h2>
+          <span>IT Department &bull; ATLAS</span>
+        </div>
+      </div>
+
+      <!-- MAIN MESSAGE -->
+      <div class="brand-main">
+        <span class="small-label">
+          STUDENT REGISTRATION &bull; BSIT ONLY
+        </span>
+
+        <h1>
+          Join the<br>
+          <span class="gold-text">ATLAS Family.</span>
+        </h1>
+
+        <p>
+          Register your student account to submit attendance
+          selfies during official university activities and events.
+        </p>
+      </div>
+
+      <!-- ELIGIBILITY CALLOUT -->
+      <div class="brand-features">
+        <div class="feature-item">
+          <div class="feature-icon">&#10004;</div>
+          <div>
+            <strong>Exclusive to BSIT Students</strong>
+            <p>Enrollment verified under the Department of Information Technology.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">&#128247;</div>
+          <div>
+            <strong>Manual Staff Verification</strong>
+            <p>Upload a clear reference portrait so staff can manually evaluate event selfies.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="brand-footer">
+      USTP Villanueva &bull; School Event Attendance System &bull; ATLAS
+    </div>
+  </aside>
+
+  <!-- ================================
+       RIGHT SIGNUP FORM PANEL
+  ================================= -->
+  <main class="form-panel">
+    <div class="signup-wrapper">
+
+      <div class="signup-heading">
+        <span class="form-label-pill">
+          BSIT ENROLLMENT
+        </span>
+        <h2>Create Student Account</h2>
+        <p>Fill in your details to register as an ATLAS BSIT student.</p>
+      </div>
+
+      <form (ngSubmit)="register()">
+
+        <!-- FULL NAME -->
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input
+            id="fullName"
+            type="text"
+            class="form-control"
+            name="fullName"
+            [(ngModel)]="fullName"
+            placeholder="e.g. Maria Santos"
+            required
+          />
+        </div>
+
+        <!-- STUDENT ID -->
+        <div class="form-group">
+          <label for="studentId">Student ID</label>
+          <input
+            id="studentId"
+            type="text"
+            class="form-control"
+            name="studentId"
+            [(ngModel)]="studentId"
+            placeholder="e.g. 2024-0001"
+            required
+          />
+        </div>
+
+        <!-- BSIT SECTION SELECTION -->
+        <div class="form-group">
+          <label for="sectionChoice">BSIT Section</label>
+          <select
+            id="sectionChoice"
+            class="form-control"
+            name="sectionChoice"
+            [(ngModel)]="sectionChoice"
+            required
+          >
+            @for (sec of standardSections; track sec) {
+              <option [value]="sec">{{ sec }}</option>
+            }
+          </select>
+        </div>
+
+        @if (sectionChoice === 'Other BSIT Section') {
+          <div class="form-group">
+            <label for="customSection">Specify BSIT Section</label>
+            <input
+              id="customSection"
+              type="text"
+              class="form-control"
+              name="customSection"
+              [(ngModel)]="customSection"
+              placeholder="e.g. BSIT-1D"
+              required
+            />
+          </div>
+        }
+
+        <!-- ELIGIBLE PROGRAM (LOCKED BSIT) -->
+        <div class="form-group">
+          <label for="department">Degree Program</label>
+          <input
+            id="department"
+            type="text"
+            class="form-control"
+            [value]="department"
+            readonly
+            style="background: #eef2fa; color: var(--navy-dark); font-weight: 700;"
+          />
+        </div>
+
+        <!-- GMAIL -->
+        <div class="form-group">
+          <label for="gmail">Gmail Address</label>
+          <input
+            id="gmail"
+            type="email"
+            class="form-control"
+            name="gmail"
+            [(ngModel)]="gmail"
+            placeholder="student@gmail.com"
+            required
+          />
+        </div>
+
+        <!-- USERNAME -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="username"
+            placeholder="Choose username (min. 4 characters)"
+            required
+          />
+        </div>
+
+        <!-- PASSWORD & CONFIRM PASSWORD -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Min. 6 characters"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              id="confirmPassword"
+              type="password"
+              class="form-control"
+              name="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              placeholder="Re-enter password"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <button
+          type="submit"
+          class="btn-primary"
+          style="width: 100%; height: 48px; font-size: 15px; margin-top: 10px;"
+        >
+          <span>Complete Registration &rarr;</span>
+        </button>
+
+      </form>
+
+      <div class="signup-box" style="margin-top: 20px; text-align: center;">
+        <span>Already have an account?</span>
+        <button
+          type="button"
+          (click)="goToLogin()"
+          style="background: none; border: none; color: var(--navy-dark); font-weight: 800; cursor: pointer;"
+        >
+          Sign In
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+</div>

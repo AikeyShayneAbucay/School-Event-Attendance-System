@@ -1,0 +1,187 @@
+<div class="login-page">
+
+  <!-- ================================
+       LEFT BRAND PANEL (ATLAS Navy & Gold)
+  ================================= -->
+  <aside class="brand-panel">
+    <div class="brand-content">
+
+      <!-- BRAND LOGO -->
+      <div class="login-brand-header">
+        <img
+          src="/atlas-logo.png"
+          alt="ATLAS Official Logo"
+          class="login-brand-logo-img"
+        />
+        <div class="login-brand-text">
+          <h2>USTP VILLANUEVA</h2>
+          <span>IT Department &bull; ATLAS</span>
+        </div>
+      </div>
+
+      <!-- MAIN MESSAGE -->
+      <div class="brand-main">
+        <span class="small-label">
+          BSIT STUDENT PORTAL &bull; ATLAS
+        </span>
+
+        <h1>
+          Welcome<br>
+          <span class="gold-text">Back.</span>
+        </h1>
+
+        <p>
+          Sign in to access your BSIT school event
+          attendance records and verify your presence
+          with selfie submissions.
+        </p>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="brand-features">
+        <div class="feature-item">
+          <div class="feature-icon">&#10004;</div>
+          <div>
+            <strong>Manage Your Attendance</strong>
+            <p>Keep track of your submitted school event attendance logs.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">&#128247;</div>
+          <div>
+            <strong>Selfie Photo Verification</strong>
+            <p>Camera-only attendance verification reviewed by authorized staff.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">&#127891;</div>
+          <div>
+            <strong>Exclusive BSIT Program Portal</strong>
+            <p>Designed specifically for ATLAS Information Technology students.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="brand-footer">
+      USTP Villanueva &bull; School Event Attendance System &bull; ATLAS
+    </div>
+  </aside>
+
+  <!-- ================================
+       RIGHT LOGIN PANEL
+  ================================= -->
+  <main class="form-panel">
+    <div class="login-wrapper">
+
+      <!-- MOBILE BRAND -->
+      <div class="mobile-logo">
+        <img src="/atlas-logo.png" alt="ATLAS Logo" style="width: 44px; height: 44px; object-fit: contain;" />
+        <div>
+          <strong>USTP VILLANUEVA</strong>
+          <span>ATLAS Attendance System</span>
+        </div>
+      </div>
+
+      <!-- HEADING -->
+      <div class="login-heading">
+        <span class="form-label-pill">
+          STUDENT PORTAL
+        </span>
+
+        <h2>Sign in to your account</h2>
+        <p>Enter your username and password to continue.</p>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form (ngSubmit)="login()">
+
+        <!-- USERNAME -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <span class="input-icon">@</span>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              [(ngModel)]="username"
+              placeholder="Enter your username"
+              autocomplete="username"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+          <div class="password-label">
+            <label for="password">Password</label>
+          </div>
+
+          <div class="input-wrapper">
+            <span class="input-icon">&#128274;</span>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        @if (errorMessage) {
+          <div class="error-message">
+            <span class="error-icon">!</span>
+            <span>{{ errorMessage }}</span>
+          </div>
+        }
+
+        <!-- LOGIN BUTTON (GOLD) -->
+        <button
+          type="submit"
+          class="login-button"
+        >
+          <span>Sign In</span>
+          <span class="button-arrow">&rarr;</span>
+        </button>
+
+      </form>
+
+      <!-- SIGN UP LINK -->
+      <div class="signup-box">
+        <span>Don't have a student account?</span>
+        <button
+          type="button"
+          (click)="goToSignup()"
+        >
+          Create Account
+        </button>
+      </div>
+
+      <!-- NOTE -->
+      <div class="account-note">
+        <div class="note-icon">i</div>
+        <p>
+          <strong>BSIT student registration only.</strong>
+          Sign up is restricted to enrolled BSIT students (ATLAS Organization).
+          Staff and administrator accounts are managed by the system administrator.
+        </p>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="form-footer">
+        USTP Villanueva &bull; School Event Attendance System &bull; ATLAS
+      </div>
+
+    </div>
+  </main>
+
+</div>

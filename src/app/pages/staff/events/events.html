@@ -1,0 +1,349 @@
+<div class="staff-layout">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <img
+        src="/atlas-logo.png"
+        alt="ATLAS Official Logo"
+        class="brand-logo-img"
+      />
+      <h2 class="brand-title">USTP VILLANUEVA</h2>
+      <span class="brand-subtitle">Event In-Charge</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a
+        routerLink="/staff/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </span>
+        <span>Dashboard</span>
+      </a>
+
+      <a
+        routerLink="/staff/verification"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <span>Attendance Verification</span>
+      </a>
+
+      <a
+        routerLink="/staff/pending"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </span>
+        <span>Pending Submissions</span>
+      </a>
+
+      <a
+        routerLink="/staff/verified"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 11 3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </span>
+        <span>Verified Records</span>
+      </a>
+
+      <a
+        routerLink="/staff/events"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+            <line x1="16" x2="16" y1="2" y2="6"/>
+            <line x1="8" x2="8" y1="2" y2="6"/>
+            <line x1="3" x2="21" y1="10" y2="10"/>
+          </svg>
+        </span>
+        <span>Manage Events</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-tagline">
+        LEARN &bull; CODE &bull; INNOVATE
+      </div>
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()"
+      >
+        <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" x2="9" y1="12" y2="12"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="top-header-left">
+        <button type="button" class="menu-toggle-btn" aria-label="Toggle menu">
+          &#9776;
+        </button>
+        <div class="header-page-title">
+          <span class="dashboard-label">STAFF PORTAL</span>
+          <h1>Manage School Events</h1>
+        </div>
+      </div>
+
+      <div class="top-header-right">
+        <!-- Notification Bell -->
+        <div class="notification-bell" title="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="notification-badge">2</span>
+        </div>
+
+        <div class="user-mini-profile">
+          <div class="mini-avatar">S</div>
+          <div class="mini-info">
+            <strong>{{ staffName }}</strong>
+            <span>Event In-Charge</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-body">
+
+      <!-- CREATE / EDIT EVENT FORM CARD -->
+      @if (showForm) {
+        <section class="content-card" style="margin-bottom: 24px; border: 2px solid var(--gold);">
+          <div class="card-title-bar">
+            <div>
+              <h2 class="card-header-title">{{ editingId === null ? 'Create New School Event' : 'Edit Event Details' }}</h2>
+            </div>
+            <button type="button" class="btn-secondary btn-sm" (click)="closeForm()">
+              Cancel
+            </button>
+          </div>
+
+          <form (ngSubmit)="saveEvent()">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="staffEventTitle">Event Title</label>
+                <input
+                  id="staffEventTitle"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="form.title"
+                  name="title"
+                  placeholder="e.g. IT Week Opening Ceremony"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="staffEventDate">Date</label>
+                <input
+                  id="staffEventDate"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="form.date"
+                  name="date"
+                  placeholder="e.g. November 8, 2026"
+                  required
+                />
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="staffEventTime">Time / Schedule</label>
+                <input
+                  id="staffEventTime"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="form.time"
+                  name="time"
+                  placeholder="e.g. 8:00 AM - 5:00 PM"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="staffEventVenue">Campus Venue</label>
+                <input
+                  id="staffEventVenue"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="form.venue"
+                  name="venue"
+                  placeholder="e.g. USTP Villanueva Gymnasium"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="staffEventDescription">Event Description</label>
+              <textarea
+                id="staffEventDescription"
+                class="form-textarea"
+                [(ngModel)]="form.description"
+                name="description"
+                rows="3"
+                placeholder="Describe event agenda, instructions for students, or dress code"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="staffEventStatus">Attendance Status</label>
+              <select
+                id="staffEventStatus"
+                class="form-control"
+                [(ngModel)]="form.status"
+                name="status"
+              >
+                <option value="Open">Open (Students can submit attendance selfie)</option>
+                <option value="Closed">Closed (Attendance locked)</option>
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 14px;">
+              <button type="button" class="btn-secondary" (click)="closeForm()">
+                Cancel
+              </button>
+              <button type="submit" class="btn-primary">
+                <span>Save School Event &rarr;</span>
+              </button>
+            </div>
+          </form>
+        </section>
+      }
+
+      <!-- EVENTS LIST CARD -->
+      <section class="content-card">
+        <div class="card-title-bar" style="flex-wrap: wrap; gap: 14px;">
+          <div>
+            <h2 class="card-header-title">Campus Events Schedule ({{ filteredEvents.length }})</h2>
+            <p style="margin: 3px 0 0; font-size: 12.5px; color: var(--muted);">Manage open attendance capture status</p>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <input
+              type="text"
+              class="search-input"
+              [(ngModel)]="searchTerm"
+              placeholder="Search events, venue..."
+            />
+
+            @if (!showForm) {
+              <button
+                type="button"
+                class="btn-primary"
+                (click)="openAddForm()"
+              >
+                <span>+ Add Event</span>
+              </button>
+            }
+          </div>
+        </div>
+
+        @if (filteredEvents.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">&#128197;</div>
+            <h3>No Events Found</h3>
+            <p>No school events match your current filter. Click "+ Add Event" to create a new activity.</p>
+            <button type="button" class="btn-primary" (click)="openAddForm()">
+              + Add Event
+            </button>
+          </div>
+        } @else {
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            @for (event of filteredEvents; track event.id) {
+              <div style="background: #fafbfe; border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                <div style="flex: 1;">
+                  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                    <span
+                      class="status-badge"
+                      [class.open]="event.status === 'Open'"
+                      [class.closed]="event.status !== 'Open'"
+                    >
+                      <span class="status-dot"></span>
+                      {{ event.status }}
+                    </span>
+                    <strong style="font-size: 16px; color: var(--navy-dark);">{{ event.title }}</strong>
+                  </div>
+
+                  <p style="margin: 0 0 10px; font-size: 13px; color: var(--muted); line-height: 1.45;">
+                    {{ event.description }}
+                  </p>
+
+                  <div style="display: flex; gap: 18px; font-size: 12px; color: #475569;">
+                    <span>&#128197; {{ event.date }}</span>
+                    <span>&#9200; {{ event.time }}</span>
+                    <span>&#128205; {{ event.venue }}</span>
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <button
+                    type="button"
+                    class="btn-secondary btn-sm"
+                    (click)="toggleStatus(event)"
+                    style="white-space: nowrap;"
+                  >
+                    <span>Toggle {{ event.status === 'Open' ? 'Close' : 'Open' }}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn-secondary btn-sm"
+                    (click)="editEvent(event)"
+                  >
+                    <span>Edit</span>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
